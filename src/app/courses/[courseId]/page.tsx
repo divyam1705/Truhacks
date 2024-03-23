@@ -1,4 +1,5 @@
 import Instructorcard from '@/components/Instructor_card'
+import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
 import React from 'react'
@@ -18,9 +19,12 @@ designation: "Software Developer",
 description: "I love to teach!!",
 rating: 5}
   return (
+    <>
+    <Navbar />
+    
     <div className='p-10'>
-      <div className='flex  justify-between items-start  flex-col md:flex-row lg:flex-row xl:flex-row'>
-        <div className=' w-[35vw] min-w-[400px]  bg-white bg-opacity-5 border-2  rounded-xl p-5 flex flex-col items-center gap-5'>
+      <div className='flex  justify-between items-center  flex-col md:flex-row lg:flex-row xl:flex-row md:items-start lg:items-start xl:items-start '>
+        <div className=' w-[35vw] min-w-[400px]  bg-white bg-opacity-5 border-2  rounded-xl p-5 flex flex-col items-center gap-5 '>
           <img
             className='rounded-lg w-[360px] h-[220px]'
             src="https://cdn.mindmajix.com/courses/react-js-training.png" alt="" />
@@ -42,6 +46,7 @@ rating: 5}
       </div>
       <Instructorcard instructor={myinstructor} />
     </div>
+    </>
   )
 }
 
