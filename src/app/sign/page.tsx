@@ -97,41 +97,6 @@ function Signpage() {
         setsubmitload(false);
     };
 
-    // const handleSignUp = (event: any) => {
-    //     event.preventDefault();
-        // setsubmitload(true);
-        // const displayName = credentials.name;
-        // console.log(credentials);
-        // firebase
-        //     .auth()
-        //     .createUserWithEmailAndPassword(credentials.email, credentials.password)
-        //     .then(async (userCredential) => {
-        //         // Handle successful sign up here
-        //         const user = userCredential.user;
-        //         if (user) {
-        //             await user.updateProfile({
-        //                 displayName: credentials.name,
-        //             });
-        //             console.log("Sign up successful!", user);
-        //             localStorage.setItem("userEmail", user.email ?? "nomail");
-        //             localStorage.setItem("uid", user.uid);
-        //             user.getIdToken().then((token) => {
-        //                 localStorage.setItem("authToken", token);
-        //             });
-        //             localStorage.setItem("userName", credentials.name);
-        //             console.log("Created");
-        //             handleCallback(displayName, user.email ?? "nomial", user.uid);
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.error("Sign up failed:", errorCode, errorMessage);
-        //         alert("Sign up Failed : " + errorMessage);
-        //     });
-        // setsubmitload(false);
-    // };
-
     const handleCallback = async (name: string, email: string, uid: string) => {
         setsubmitload(true);
         addUser(name, email, uid)
@@ -148,9 +113,6 @@ function Signpage() {
 
     };
 
-    // const onChange = (event: any) => {
-    //     setcredentials({ ...credentials, [event.target.name]: event.target.value });
-    // };
     const formSchema = z.object({
         name: z.string().min(2, {
             message: "Username must be at least 2 characters.",
@@ -166,6 +128,7 @@ function Signpage() {
             password: "",
         },
     });
+    
     function onSubmit(credentials: z.infer<typeof formSchema>) {
         setsubmitload(true);
         const displayName = credentials.name;
