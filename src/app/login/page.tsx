@@ -65,9 +65,7 @@ function Loginpage() {
             await setDoc(userRef, {
                 name: name,
                 email: email,
-                id: id,
-                partnerIds: [],
-                todos: []
+                id: id
             });
             console.log("User added successfully!");
         } catch (error) {
@@ -128,9 +126,6 @@ function Loginpage() {
 
     };
 
-    // const onChange = (event: any) => {
-    //     setcredentials({ ...credentials, [event.target.name]: event.target.value });
-    // };
     const formSchema = z.object({
         email: z.string().email(),
         password: z.string()

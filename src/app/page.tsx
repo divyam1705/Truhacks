@@ -21,7 +21,7 @@ export default function Home() {
           />
           <div className="flex justify-center items-center mt-8 text-lg">
           <HoverBorderGradient 
-          onClick={()=>{router.push("/sign")}}
+          onClick={()=>{router.push("/courses")}}
           >Start Learning</HoverBorderGradient>
           {/* <HoverBorderGradient >LogIn</HoverBorderGradient> */}
           </div>

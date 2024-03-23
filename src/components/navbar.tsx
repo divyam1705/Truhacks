@@ -74,7 +74,7 @@ const Navbar = () => {
                 >
                   Courses
                 </a>
-                {localStorage.getItem("email")&& <><a
+                {!localStorage.getItem("userEmail")&& <><a
                   href="#"
                 onClick={()=>{ router.push("/sign")}}
                   className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -89,6 +89,20 @@ const Navbar = () => {
                   Login
                 </a></>
                 }
+                {
+                  localStorage.getItem("userEmail")&&
+                  <a
+                  href="#"
+                  onClick={()=>{
+                    localStorage.removeItem("authToken");
+                  localStorage.removeItem("userEmail");
+                  router.push("/login");}}
+                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Logout
+                </a>
+                  }
+                
               </div>
             </div>
           </div>
