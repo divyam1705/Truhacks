@@ -68,6 +68,14 @@ const Navbar = () => {
                 </a>
                 <a
                   href="#"
+                  onClick={()=>{ router.push("/courses")}}
+
+                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Courses
+                </a>
+                <a
+                  href="#"
                 onClick={()=>{ router.push("/sign")}}
                   className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
