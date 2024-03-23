@@ -50,3 +50,14 @@ export const updateCourse = async (course: Course) => {
         console.log("Failed to update course")
     }
 }
+
+export const getUser = async ( course: Course  ) => {
+    try {
+        const courseDoc = await getDoc(doc(db, "users" , course.courseId));
+        return courseDoc;
+    } catch {
+        console.log("Failed to get courses")
+    }
+
+
+}
