@@ -126,9 +126,6 @@ function Loginpage() {
 
     };
 
-    // const onChange = (event: any) => {
-    //     setcredentials({ ...credentials, [event.target.name]: event.target.value });
-    // };
     const formSchema = z.object({
         email: z.string().email(),
         password: z.string()

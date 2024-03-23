@@ -5,3 +5,6 @@ export interface Course {
     courseId: string
 }
 
+export interface User {
+    
+}
