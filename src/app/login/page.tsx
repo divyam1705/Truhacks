@@ -65,9 +65,7 @@ function Loginpage() {
             await setDoc(userRef, {
                 name: name,
                 email: email,
-                id: id,
-                partnerIds: [],
-                todos: []
+                id: id
             });
             console.log("User added successfully!");
         } catch (error) {
