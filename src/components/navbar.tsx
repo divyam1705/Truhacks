@@ -74,7 +74,7 @@ const Navbar = () => {
                 >
                   Courses
                 </a>
-                <a
+                {localStorage.getItem("email")&& <><a
                   href="#"
                 onClick={()=>{ router.push("/sign")}}
                   className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -87,7 +87,8 @@ const Navbar = () => {
                   className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Login
-                </a>
+                </a></>
+                }
               </div>
             </div>
           </div>
