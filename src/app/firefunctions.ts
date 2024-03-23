@@ -34,7 +34,7 @@ export const addCourse = async (course: Course) => {
 
 export const updateCourse = async (course: Course) => {
     try {
-        await updateDoc(doc(db, "courses", course.name), d);
+        await setDoc(doc(db, "courses", course.name), course );
     } catch {
         console.log("Failed to update course")
     }
