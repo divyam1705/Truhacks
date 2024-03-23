@@ -11,7 +11,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { AnimatedTooltip } from '@/components/ui/animated-tootip';
-import Navbar from '@/components/navbar';
+// import Navbar from '@/components/navbar';
 //TODO
 function Tag({color,tag_name}:{color:string,tag_name:string}){
     return (
@@ -72,7 +72,7 @@ function CourseCard({title, course_img, course_instructors,description,course_id
 function Coursepage() {
     return (
         <>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className='ml-10 my-7 text-4xl font-semibold'>Courses</div>
         <div className='flex justify-center items-center'>
             

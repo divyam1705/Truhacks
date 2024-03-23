@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import Navbar from "@/components/navbar";
+// import Navbar from "@/components/navbar";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
@@ -9,7 +9,7 @@ export default function Home() {
   const router=useRouter();
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
 

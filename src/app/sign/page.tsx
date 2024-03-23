@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import Navbar from "@/components/navbar"
+// import Navbar from "@/components/navbar"
 import { Button } from '@/components/ui/button'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -132,12 +132,14 @@ function Signpage() {
         addUser(name, email, uid, role)
             .then((docRef) => {
                 console.log("User added ");
-                router.push("/");
                 window.location.reload();
+                router.push("/");
+                
             })
             .catch((error) => {
                 console.error("Error adding user: ", error);
             });
+            window.location.reload();
         router.push("/");
         setsubmitload(false);
 
@@ -195,7 +197,7 @@ function Signpage() {
     }
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className='h-screen flex justify-center items-center '>
                 <Tabs defaultValue="student" className="w-[80vw] max-w-[500px]">
                     <TabsList >
