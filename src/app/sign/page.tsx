@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
+import Navbar from "@/components/navbar"
 import { Button } from '@/components/ui/button'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -65,8 +65,6 @@ function Signpage() {
                 name: name,
                 email: email,
                 id: id,
-                partnerIds: [],
-                todos: []
             });
             console.log("User added successfully!");
         } catch (error) {
@@ -204,7 +202,8 @@ function Signpage() {
     }
     return (
         <>
-            <div className='h-screen flex justify-center items-center'>
+        <Navbar/>
+            <div className='h-screen flex justify-center items-center '>
 
                 <Card className="w-[80vw] max-w-[500px]">
                     <CardHeader>
@@ -278,8 +277,7 @@ function Signpage() {
                     </CardFooter>
                 </Card>
             </div>
-            
-        </>
+            </>
     )
 }
 

@@ -41,6 +41,7 @@ import {
     getDoc,
     where,
 } from "firebase/firestore";
+import Navbar from "@/components/navbar";
 function Loginpage() {
     interface creds {
         name: string,
@@ -164,6 +165,7 @@ function Loginpage() {
     }
     return (
         <>
+        <Navbar/>
             <div className='h-screen flex justify-center items-center'>
 
                 <Card className="w-[80vw] max-w-[500px]">
