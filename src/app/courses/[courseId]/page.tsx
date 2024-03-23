@@ -1,5 +1,5 @@
 import Instructorcard from '@/components/Instructor_card'
-import Navbar from '@/components/navbar'
+// import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
 import React from 'react'
@@ -20,7 +20,7 @@ description: "I love to teach!!",
 rating: 5}
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     
     <div className='p-10'>
       <div className='flex  justify-between items-center  flex-col md:flex-row lg:flex-row xl:flex-row md:items-start lg:items-start xl:items-start '>
