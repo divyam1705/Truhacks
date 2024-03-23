@@ -17,3 +17,6 @@ export interface Course {
     role: UserRole;
     courses?: string[];     // optional - instructor's teaching courses and student's enrolled courses
   }
+
+
+// this is a test 
