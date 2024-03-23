@@ -15,8 +15,6 @@ import {
 } from "firebase/firestore";
 import { Course } from "./types";
 
-
-
 export const getCourses = async ( course: Course  ) => {
     try {
         const courseDocs = await getDocs(collection(db, "courses"));
