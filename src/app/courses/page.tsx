@@ -46,6 +46,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
+import { useRouter } from 'next/navigation';
 let cnums = 0;
 const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -343,6 +344,7 @@ function CourseCard(course: Course) {
 }
 function Coursepage() {
     const [courses, setcourses] = useState<Course[]>([]);
+    const router = useRouter();
     useEffect(() => {
         getCourses().then(allcourses => {
             if (allcourses !== undefined) {
@@ -363,7 +365,9 @@ function Coursepage() {
             }
         });
     }, []);
-
+    // if(!localStorage.getItem("userEmail")){
+    //     router.push("/sign")
+    // }
     return (
         <>
             {/* <Navbar /> */}
