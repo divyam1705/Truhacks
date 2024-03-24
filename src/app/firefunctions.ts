@@ -9,12 +9,22 @@ import {
 import { Course, User } from "./types";
 
 // Retrieves all course documents.
-export const getCourses = async (course: Course) => {
+export const getCourses = async () => {
     try {
-        return await getDocs(collection(db, "courses"));
+        const snapshot=await getDocs(collection(db, "courses"));
+        const coursesList = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+              ...data
+            //   courseId: doc.id, // Ensure you're setting the courseId or any other required fields correctly
+            };
+          });
+          return coursesList;
+        
     } catch {
         console.log("Failed to get courses");
     }
+    
 };
 
 // Retrieves a specific course by ID.
@@ -28,10 +38,13 @@ export const getCourse = async (course: Course) => {
 
 // Adds a new course document.
 export const addCourse = async (course: Course) => {
+    const courseDocRef = await doc(db, "courses", course.courseId);
     try {
-        await setDoc(doc(db, "courses", course.name), course);
-    } catch {
-        console.log("Failed to add course");
+        console.log(course);
+        await setDoc(courseDocRef, course);
+        // console.log("added course");
+    } catch (error){
+        console.log(error);
     }
 };
 

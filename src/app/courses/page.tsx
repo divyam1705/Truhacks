@@ -1,10 +1,10 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Link from 'next/link';
 import Image from "next/image"
 import { AnimatedTooltip } from '@/components/ui/animated-tootip';
 import { Calendar } from '@/components/ui/calendar';
-
+import { addCourse, getCourses } from '../firefunctions';
 import {
     Card,
     CardContent,
@@ -33,16 +33,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-
-// export interface Course {
-//     courseId: string;
-//     name: string;
-//     description: string;
-//     instructorId: string;    // links to the User who is the instructor
-//     meetingLink: string;
-//     imgLink: string;
-//     QAs: QA[];
-//   }
 
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
@@ -172,19 +162,7 @@ function DialogDemo() {
 
         return dateTime;
     }
-    function handleAddCourse() {
-        const newCourse: Course = {
-            courseId: '11',
-            name: name,
-            description: description,
-            instructorId: [""],   // links to the User who is the instructor
-            meetingLink: imageLink,
-            imgLink: link,
-            date: createDateTime(date,hours,minutes,merid),
-            tags:[tag1,tag2]
-        }
-        //TODO
-    }
+    
     const [name, setname] = useState("");
     const [description, setdescription] = useState("");
     const [link, setlink] = useState("");
@@ -195,6 +173,28 @@ function DialogDemo() {
     const [merid, setmerid] = useState("");
     const [tag1, settag1] = useState("");
     const [tag2, settag2] = useState("");
+    // console.log(object);
+    async function  handleAddCourse() {
+        const newCourse: Course = {
+            courseId: '1100',
+            name: name,
+            description: description,
+            instructorId: [""],   // links to the User who is the instructor
+            meetingLink: link,
+            imgLink: imageLink,
+            date: createDateTime(date,hours,minutes,merid),
+            tags:[tag1,tag2]
+        }
+        setname("");
+        setdescription("");
+        setimageLink("");
+        setlink("");
+// console.log(newCourse);
+        //TODO
+        await addCourse(newCourse);
+
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -217,13 +217,13 @@ function DialogDemo() {
                         <Label htmlFor="name" className="text-left">
                             Name
                         </Label>
-                        <Input id="name" value={name} onChange={(cv) => { setname(cv.value) }} className="col-span-3" />
+                        <Input id="name" value={name} onChange={(cv) => {setname(cv.target.value)}} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="description" className="text-left">
                             Description
                         </Label>
-                        <Input id="description" onChange={(cv) => { setdescription(cv.value) }} value={description} className="col-span-3" />
+                        <Input id="description" onChange={(cv) => { setdescription(cv.target.value) }} value={description} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4 ">
                     <Label htmlFor="tag1" className="text-left">
@@ -231,23 +231,23 @@ function DialogDemo() {
                         </Label>
                         <div className=''>
                         
-                        <Input  id="tag1" placeholder='English' onChange={(cv) => { settag1(cv.value) }} value={description} className="col-span-3" />
+                        <Input  id="tag1" placeholder='English' onChange={(cv) => { settag1(cv.target.value) }} value={tag1} className="col-span-3" />
                        </div> 
                        <div>
-                        <Input id="tag2" placeholder='Physics' onChange={(cv) => { settag1(cv.value) }} value={description} className="col-span-3" />
+                        <Input id="tag2" placeholder='Physics' onChange={(cv) => { settag2(cv.target.value) }} value={tag2} className="col-span-3" />
                         </div>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="meet-link" className="text-left">
                             Link
                         </Label>
-                        <Input id="meet-link" onChange={(cv) => { setlink(cv.value) }} value={link} className="col-span-3" />
+                        <Input id="meet-link" onChange={(cv) => { setlink(cv.target.value) }} value={link} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="image-link" className="text-left">
                             Image Link
                         </Label>
-                        <Input id="image-link" onChange={(cv) => { setimageLink(cv.value) }} value={imageLink} className="col-span-3" />
+                        <Input id="image-link" onChange={(cv) => { setimageLink(cv.target.value) }} value={imageLink} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="image-link" className="text-left">
@@ -261,7 +261,7 @@ function DialogDemo() {
                         </Label>
                         <TimeSelector hrs={true} vari={hours} setvari={sethours} />
                         <TimeSelector hrs={false} vari={minutes} setvari={setminutes} />
-                        <MeridianSelector vari={merid} setvari={merid}/>
+                        <MeridianSelector vari={merid} setvari={setmerid}/>
                     </div>
                 </div>
                 <DialogFooter>
@@ -282,7 +282,7 @@ function Tag({ color, tag_name }: { color: string, tag_name: string }) {
         </div>
     )
 }
-function CourseCard({ title, course_img, course_instructors, description, course_id }: { title: string, course_img: string, course_instructors: string[], description: string, course_id: string }) {
+function CourseCard(course:Course) {
     const people = [
         {
             id: 1,
@@ -308,19 +308,19 @@ function CourseCard({ title, course_img, course_instructors, description, course
 
     ];
     return (
-        <Link href={"/courses/" + course_id}>
+        <Link href={"/courses/" + course.courseId}>
             <Card className='w-[320px] h-[330px] m-2 text-lg cursor-pointer transition-transform duration-300 transform hover:-translate-y-3'>
                 <CardHeader>
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription className='overflow-hidden whitespace-nowrap'>React is react and you dont know react. so freaking learn it</CardDescription>
+                    <CardTitle>{course.name}</CardTitle>
+                    <CardDescription className='overflow-hidden whitespace-nowrap'>{course.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Image className='rounded-lg w-[330px] h-[150px]' width={330} height={150} src={course_img} alt="" />
+                    <Image className='rounded-lg w-[330px] h-[150px]' width={330} height={150} src={course.imgLink} alt="" />
                 </CardContent>
                 <CardFooter className='flex flex-col justify-center items-center -mt-3'>
                     <div className='flex justify-center items-center mb-2'>
-                        <Tag color="red" tag_name='Fullstack' />
-                        <Tag color="red" tag_name='Frontend' /></div>
+                        <Tag color="red" tag_name={course.tags[0]} />
+                        <Tag color="red" tag_name={course.tags[1]} /></div>
                     <div className='flex justify-center items-center mb-2'>
                         <AnimatedTooltip items={people} />
                     </div>
@@ -332,6 +332,27 @@ function CourseCard({ title, course_img, course_instructors, description, course
 
 }
 function Coursepage() {
+    const [courses, setcourses] = useState<Course[]>([]);
+    useEffect(() => {
+        getCourses().then(allcourses => {
+            if (allcourses !== undefined) {
+                const fullCourses: Course[] = allcourses.map((course) => ({
+                    // ...course,
+                    // Assuming default or placeholder values for missing properties
+                    courseId:course.courseId,
+                    name: course.name || "Unknown Course",
+                    description: course.description || "No description available.",
+                    instructorId: course.instructorId || ["Unknown"],
+                    meetingLink: course.meetingLink || "https://example.com",
+                    imgLink: course.imgLink || "https://example.com/default-image.png",
+                    date: course.date ? new Date(course.date) : new Date(),
+                    tags: course.tags || ["Uncategorized"]
+                }));
+                setcourses(fullCourses);
+            }
+        });
+    }, []);
+    
     return (
         <>
             {/* <Navbar /> */}
@@ -341,12 +362,19 @@ function Coursepage() {
             <div className='flex justify-center items-center'>
 
                 <div className='  grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
-                    <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='1' />
+                {courses.map((cour,ind)=>{
+                    return (<CourseCard 
+                        key={ind}
+                    {...cour}
+                    />);
+                })
+                }
+                    {/* <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='1' />
                     <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='2' />
 
                     <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='3' />
 
-                    <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='4' />
+                    <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='4' /> */}
 
                 </div>
             </div></>
