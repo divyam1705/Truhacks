@@ -21,7 +21,7 @@ function Tag({ color, tag_name }: { color: string, tag_name: string }) {
 function Coursepage({ params }: any) {
   const myinstructor = {
     instructor_name: "Bulbul",
-    profilePicture: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+    profilePicture: "https://cdn.vox-cdn.com/thumbor/RcAdlMhw-adDQnJiVWKRPUSP10M=/0x0:2024x1038/1200x800/filters:focal(989x320:1311x642)/cdn.vox-cdn.com/uploads/chorus_image/image/71278865/Screen_Shot_2022_08_23_at_4.22.21_PM.0.png",
     designation: "Software Developer",
     description: "I love to teach!!",
     rating: 5

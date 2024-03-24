@@ -72,7 +72,7 @@ export const InfiniteMovingCards = ({
   };
   const myinstructor = {
     instructor_name: "Bulbul",
-    profilePicture: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+    profilePicture: "https://cdn.vox-cdn.com/thumbor/RcAdlMhw-adDQnJiVWKRPUSP10M=/0x0:2024x1038/1200x800/filters:focal(989x320:1311x642)/cdn.vox-cdn.com/uploads/chorus_image/image/71278865/Screen_Shot_2022_08_23_at_4.22.21_PM.0.png",
     designation: "Software Developer",
     description: "I love to teach!!",
     rating: 5
@@ -94,7 +94,7 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-            <Instructorcard instructor={myinstructor}/>
+            <Instructorcard key={idx} instructor={myinstructor}/>
         //   <li
         //     className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
         //     style={{
