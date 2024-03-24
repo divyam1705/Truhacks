@@ -6,7 +6,8 @@ export interface Course {
     meetingLink: string;
     imgLink: string;
     QAs?: QA[];
-    date:Date
+    date: Date
+    tags: string[];
   }
 
   export type UserRole = 'student' | 'instructor'; 
