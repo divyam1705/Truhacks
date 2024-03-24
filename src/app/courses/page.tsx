@@ -1,5 +1,5 @@
 "use client"
-import React, { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import Image from "next/image"
 import { AnimatedTooltip } from '@/components/ui/animated-tootip';
@@ -46,7 +46,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-let cnums=0;
+let cnums = 0;
 const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
 )
@@ -79,7 +79,7 @@ function TimeSelector({ hrs, vari, setvari }: { hrs: boolean, vari: string, setv
 
     );
 }
-function MeridianSelector({vari,setvari}:{vari:string,setvari:(v:string)=>void}) {
+function MeridianSelector({ vari, setvari }: { vari: string, setvari: (v: string) => void }) {
 
     return (
         <Select onValueChange={setvari}>
@@ -141,8 +141,8 @@ function DatePicker({ date, setDate }: { date: Date | undefined, setDate: (d: Da
 }
 
 function DialogDemo() {
-    function createDateTime(date: Date|undefined, hour: string, minute: string, meridian: string): Date {
-        if(date===undefined||(merid!=="AM"&&merid!="PM")){return new Date();}
+    function createDateTime(date: Date | undefined, hour: string, minute: string, meridian: string): Date {
+        if (date === undefined || (merid !== "AM" && merid != "PM")) { return new Date(); }
         let hours24 = parseInt(hour, 10);
         const minutes = parseInt(minute, 10);
 
@@ -162,7 +162,7 @@ function DialogDemo() {
 
         return dateTime;
     }
-    
+
     const [name, setname] = useState("");
     const [description, setdescription] = useState("");
     const [link, setlink] = useState("");
@@ -174,22 +174,27 @@ function DialogDemo() {
     const [tag1, settag1] = useState("");
     const [tag2, settag2] = useState("");
     // console.log(object);
-    async function  handleAddCourse(cnums:Number) {
+    async function handleAddCourse(cnums: Number) {
         const newCourse: Course = {
             courseId: cnums.toString(),
             name: name,
             description: description,
-            instructorId: [""],   // links to the User who is the instructor
+            // instructors: [{
+            //     name: localStorage.getItem("name"),
+            //     designation: string,
+            //     description: string,
+            //     image: string,
+            // }],   // links to the User who is the instructor
             meetingLink: link,
             imgLink: imageLink,
-            date: createDateTime(date,hours,minutes,merid),
-            tags:[tag1,tag2]
+            date: createDateTime(date, hours, minutes, merid),
+            tags: [tag1, tag2]
         }
         setname("");
         setdescription("");
         setimageLink("");
         setlink("");
-// console.log(newCourse);
+        // console.log(newCourse);
         //TODO
         await addCourse(newCourse);
 
@@ -217,7 +222,7 @@ function DialogDemo() {
                         <Label htmlFor="name" className="text-left">
                             Name
                         </Label>
-                        <Input id="name" value={name} onChange={(cv) => {setname(cv.target.value)}} className="col-span-3" />
+                        <Input id="name" value={name} onChange={(cv) => { setname(cv.target.value) }} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="description" className="text-left">
@@ -226,15 +231,15 @@ function DialogDemo() {
                         <Input id="description" onChange={(cv) => { setdescription(cv.target.value) }} value={description} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4 ">
-                    <Label htmlFor="tag1" className="text-left">
+                        <Label htmlFor="tag1" className="text-left">
                             Tag
                         </Label>
                         <div className=''>
-                        
-                        <Input  id="tag1" placeholder='English' onChange={(cv) => { settag1(cv.target.value) }} value={tag1} className="col-span-3" />
-                       </div> 
-                       <div>
-                        <Input id="tag2" placeholder='Physics' onChange={(cv) => { settag2(cv.target.value) }} value={tag2} className="col-span-3" />
+
+                            <Input id="tag1" placeholder='English' onChange={(cv) => { settag1(cv.target.value) }} value={tag1} className="col-span-3" />
+                        </div>
+                        <div>
+                            <Input id="tag2" placeholder='Physics' onChange={(cv) => { settag2(cv.target.value) }} value={tag2} className="col-span-3" />
                         </div>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -261,11 +266,11 @@ function DialogDemo() {
                         </Label>
                         <TimeSelector hrs={true} vari={hours} setvari={sethours} />
                         <TimeSelector hrs={false} vari={minutes} setvari={setminutes} />
-                        <MeridianSelector vari={merid} setvari={setmerid}/>
+                        <MeridianSelector vari={merid} setvari={setmerid} />
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit" onClick={()=>{handleAddCourse(cnums)}}>Add </Button>
+                    <Button type="submit" onClick={() => { handleAddCourse(cnums) }}>Add </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -282,7 +287,7 @@ function Tag({ color, tag_name }: { color: string, tag_name: string }) {
         </div>
     )
 }
-function CourseCard(course:Course) {
+function CourseCard(course: Course) {
     const people = [
         {
             id: 1,
@@ -307,12 +312,12 @@ function CourseCard(course:Course) {
         },
 
     ];
-    const pth="/courses/" + course.courseId;
+    const pth = "/courses/" + course.courseId;
 
-    
+
     return (
-        <Link 
-        href={{ pathname: pth}}>
+        <Link
+            href={{ pathname: pth }}>
 
             <Card className='w-[320px] h-[330px] m-2 text-lg cursor-pointer transition-transform duration-300 transform hover:-translate-y-3'>
                 <CardHeader>
@@ -344,21 +349,21 @@ function Coursepage() {
                 const fullCourses: Course[] = allcourses.map((course) => ({
                     // ...course,
                     // Assuming default or placeholder values for missing properties
-                    courseId:course.courseId,
+                    courseId: course.courseId,
                     name: course.name || "Unknown Course",
                     description: course.description || "No description available.",
-                    instructorId: course.instructorId || ["Unknown"],
+                    instructors: course.instructors,
                     meetingLink: course.meetingLink || "https://example.com",
                     imgLink: course.imgLink || "https://example.com/default-image.png",
                     date: course.date ? new Date(course.date) : new Date(),
                     tags: course.tags || ["Uncategorized"]
                 }));
                 setcourses(fullCourses);
-                cnums=fullCourses.length;
+                cnums = fullCourses.length;
             }
         });
     }, []);
-    
+
     return (
         <>
             {/* <Navbar /> */}
@@ -368,13 +373,13 @@ function Coursepage() {
             <div className='flex justify-center items-center'>
 
                 <div className='  grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
-                {courses.map((cour,ind)=>{
-                    return (<CourseCard 
-                        key={ind}
-                    {...cour}
-                    />);
-                })
-                }
+                    {courses.map((cour, ind) => {
+                        return (<CourseCard
+                            key={ind}
+                            {...cour}
+                        />);
+                    })
+                    }
                     {/* <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='1' />
                     <CourseCard title="React" course_img="https://cdn.mindmajix.com/courses/react-js-training.png" course_instructors={["Ff"]} description="bulbula hhoon main" course_id='2' />
 

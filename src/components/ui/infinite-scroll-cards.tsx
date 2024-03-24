@@ -71,10 +71,10 @@ export const InfiniteMovingCards = ({
     }
   };
   const myinstructor = {
-    instructor_name: "Bulbul",
-    profilePicture: "https://cdn.vox-cdn.com/thumbor/RcAdlMhw-adDQnJiVWKRPUSP10M=/0x0:2024x1038/1200x800/filters:focal(989x320:1311x642)/cdn.vox-cdn.com/uploads/chorus_image/image/71278865/Screen_Shot_2022_08_23_at_4.22.21_PM.0.png",
+    instructor_name: "Andrew Tate",
+    profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-3be2088e92c69897cb5328e2f0587c80-pjlq",
     designation: "Software Developer",
-    description: "I love to teach!!",
+    description: "I love to teach!!  get abs ! whats the color of your buggati",
     rating: 5
   };
   return (
