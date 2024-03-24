@@ -12,9 +12,11 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    quote: string;
-    name: string;
-    title: string;
+      instructor_name: string,
+      profilePicture: string,
+      designation: string,
+      description: string,
+      rating: number
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -94,7 +96,7 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-            <Instructorcard key={idx} instructor={myinstructor}/>
+            <Instructorcard key={idx} instructor={item}/>
         //   <li
         //     className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
         //     style={{
