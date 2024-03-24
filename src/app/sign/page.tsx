@@ -70,7 +70,7 @@ function Signpage() {
     };
     const [submitload, setsubmitload] = useState(false);
 
-    const handleGoogleSignIn = async () => {
+    const handleGoogleSignIn = async (role:string) => {
         console.log("Inside Google");
         setsubmitload(true);
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -85,7 +85,7 @@ function Signpage() {
                 localStorage.setItem("authToken", token);
                 localStorage.setItem("userName", user.displayName ?? "noname");
                 // console.log("google")
-                handleCallback(user.displayName ?? "noname", user.email ?? "nomail", user.uid,"instructor");
+                handleCallback(user.displayName ?? "noname", user.email ?? "nomail", user.uid,role);
             }
         } catch (error: any) {
             alert("Error Signing in with Google");
@@ -134,15 +134,15 @@ function Signpage() {
         addUser(name, email, uid, role)
             .then((docRef) => {
                 console.log("User added ");
-                window.location.reload();
-                router.push("/");
+               
+                router.push("/"); window.location.reload();
                 
             })
             .catch((error) => {
                 console.error("Error adding user: ", error);
             });
-            window.location.reload();
-        router.push("/");
+            // window.location.reload();
+        // router.push("/");
         setsubmitload(false);
 
     };
@@ -163,7 +163,7 @@ function Signpage() {
         },
     });
     
-    function onSubmit(credentials: z.infer<typeof formSchema>) {
+    function onSubmits(credentials: z.infer<typeof formSchema>) {
         setsubmitload(true);
         const displayName = credentials.name;
         console.log(credentials);
@@ -197,6 +197,40 @@ function Signpage() {
         setsubmitload(false);
         // console.log(values)
     }
+    function onSubmiti(credentials: z.infer<typeof formSchema>) {
+        setsubmitload(true);
+        const displayName = credentials.name;
+        console.log(credentials);
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(credentials.email, credentials.password)
+            .then(async (userCredential) => {
+                // Handle successful sign up here
+                const user = userCredential.user;
+                if (user) {
+                    await user.updateProfile({
+                        displayName: credentials.name,
+                    });
+                    console.log("Sign up successful!", user);
+                    localStorage.setItem("userEmail", user.email ?? "nomail");
+                    localStorage.setItem("uid", user.uid);
+                    user.getIdToken().then((token) => {
+                        localStorage.setItem("authToken", token);
+                    });
+                    localStorage.setItem("userName", credentials.name);
+                    console.log("Created");
+                    handleCallback(displayName, user.email ?? "nomial", user.uid,"instructors");
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error("Sign up failed:", errorCode, errorMessage);
+                alert("Sign up Failed : " + errorMessage);
+            });
+        setsubmitload(false);
+        // console.log(values)
+    }
     return (
         <>
             {/* <Navbar /> */}
@@ -216,7 +250,7 @@ function Signpage() {
 
                             {/* <Button variant="outline">Shadd</Button> */}
                             <Form {...form} >
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                                <form onSubmit={form.handleSubmit(onSubmits)} className="space-y-8">
                                     <FormField
                                         control={form.control}
                                         name="name"
@@ -266,7 +300,7 @@ function Signpage() {
                             </Form>
                         </CardContent>
                         <CardFooter className="flex justify-center items-center">
-                            <Button variant="outline" onClick={handleGoogleSignIn}>
+                            <Button variant="outline" onClick={()=>{handleGoogleSignIn("student")}}>
                                 <Image
                                     className="sign-in mr-3 "
                                     width={25}
@@ -288,7 +322,7 @@ function Signpage() {
 
                             {/* <Button variant="outline">Shadd</Button> */}
                             <Form {...form} >
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                                <form onSubmit={form.handleSubmit(onSubmiti)} className="space-y-8">
                                     <FormField
                                         control={form.control}
                                         name="name"
@@ -338,7 +372,7 @@ function Signpage() {
                             </Form>
                         </CardContent>
                         <CardFooter className="flex justify-center items-center">
-                            <Button variant="outline" onClick={handleGoogleSignIn}>
+                            <Button variant="outline" onClick={()=>{handleGoogleSignIn("instructor")}}>
                                 <Image
                                     className="sign-in mr-3 "
                                     width={25}
