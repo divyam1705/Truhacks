@@ -46,7 +46,7 @@ import {
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-
+let cnums=0;
 const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
 )
@@ -174,9 +174,9 @@ function DialogDemo() {
     const [tag1, settag1] = useState("");
     const [tag2, settag2] = useState("");
     // console.log(object);
-    async function  handleAddCourse() {
+    async function  handleAddCourse(cnums:Number) {
         const newCourse: Course = {
-            courseId: '1100',
+            courseId: cnums.toString(),
             name: name,
             description: description,
             instructorId: [""],   // links to the User who is the instructor
@@ -265,7 +265,7 @@ function DialogDemo() {
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit" onClick={handleAddCourse}>Add </Button>
+                    <Button type="submit" onClick={()=>{handleAddCourse(cnums)}}>Add </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -308,12 +308,12 @@ function CourseCard(course:Course) {
 
     ];
     const pth="/courses/" + course.courseId;
-    const propsToSend = {
-        course
-      };
+
+    
     return (
         <Link 
-        href={{ pathname: pth, query: propsToSend}}>
+        href={{ pathname: pth}}>
+
             <Card className='w-[320px] h-[330px] m-2 text-lg cursor-pointer transition-transform duration-300 transform hover:-translate-y-3'>
                 <CardHeader>
                     <CardTitle>{course.name}</CardTitle>
@@ -354,6 +354,7 @@ function Coursepage() {
                     tags: course.tags || ["Uncategorized"]
                 }));
                 setcourses(fullCourses);
+                cnums=fullCourses.length;
             }
         });
     }, []);

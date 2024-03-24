@@ -1,4 +1,5 @@
 "use client"
+import { Timestamp } from 'firebase/firestore';
 
 import * as React from "react"
 import { format } from "date-fns"
@@ -13,20 +14,24 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export function DatePicker() {
-    const dat =new Date();
-  const [date, setDate] = React.useState<Date>(dat)
-
+export function DatePicker({dat}:{dat:Date}) {
+  if (dat instanceof Timestamp) {
+    // Convert Firebase Timestamp to JavaScript Date object
+    dat = dat.toDate();
+  }
+    // const dat =dat.toDate();
+  // const [date, setDate] = React.useState<Date>(dat)
+console.log(dat);
   return (
         <Button
           variant={"outline"}
           className={cn(
             "w-[280px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !dat && "text-muted-foreground"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {format(date, "PPPp") }
+          {format(dat, "PPPp") }
         </Button>
   )
 }
