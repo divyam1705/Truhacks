@@ -208,7 +208,7 @@ function Signpage() {
                     </TabsList>
                     <TabsContent value="student"><Card className="w-[80vw] max-w-[500px]">
                         <CardHeader>
-                            <CardTitle>Student Sign In</CardTitle>
+                            <CardTitle>Student Sign Up</CardTitle>
                             {/* <CardDescription>Card Description</CardDescription> */}
                         </CardHeader>
                         <CardContent>
@@ -280,7 +280,7 @@ function Signpage() {
                     </Card></TabsContent>
                     <TabsContent value="instructor"><Card className="w-[80vw] max-w-[500px]">
                         <CardHeader>
-                            <CardTitle>Instructor Sign In</CardTitle>
+                            <CardTitle>Instructor Sign Up</CardTitle>
                             {/* <CardDescription>Card Description</CardDescription> */}
                         </CardHeader>
                         <CardContent>
