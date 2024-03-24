@@ -365,9 +365,9 @@ function Coursepage() {
             }
         });
     }, []);
-    if(!localStorage.getItem("userEmail")){
-        router.push("/sign")
-    }
+    // if(!localStorage.getItem("userEmail")){
+    //     router.push("/sign")
+    // }
     return (
         <>
             {/* <Navbar /> */}
