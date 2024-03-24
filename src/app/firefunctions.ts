@@ -15,8 +15,8 @@ export const getCourses = async () => {
         const coursesList = snapshot.docs.map(doc => {
             const data = doc.data();
             return {
-              ...data,
-              courseId: doc.id, // Ensure you're setting the courseId or any other required fields correctly
+              ...data
+            //   courseId: doc.id, // Ensure you're setting the courseId or any other required fields correctly
             };
           });
           return coursesList;

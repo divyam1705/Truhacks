@@ -312,7 +312,7 @@ function CourseCard(course:Course) {
             <Card className='w-[320px] h-[330px] m-2 text-lg cursor-pointer transition-transform duration-300 transform hover:-translate-y-3'>
                 <CardHeader>
                     <CardTitle>{course.name}</CardTitle>
-                    <CardDescription className='overflow-hidden whitespace-nowrap'>React is react and you dont know react. so freaking learn it</CardDescription>
+                    <CardDescription className='overflow-hidden whitespace-nowrap'>{course.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Image className='rounded-lg w-[330px] h-[150px]' width={330} height={150} src={course.imgLink} alt="" />
@@ -334,13 +334,23 @@ function CourseCard(course:Course) {
 function Coursepage() {
     const [courses, setcourses] = useState<Course[]>([]);
     useEffect(() => {
-      getCourses().then(
-        (allcourses)=>{
-            // console.log(allcourses);
-            if(allcourses!==undefined)
-            {setcourses(allcourses);}
-        }
-      )
+        getCourses().then(allcourses => {
+            if (allcourses !== undefined) {
+                const fullCourses: Course[] = allcourses.map((course) => ({
+                    // ...course,
+                    // Assuming default or placeholder values for missing properties
+                    courseId:course.courseId,
+                    name: course.name || "Unknown Course",
+                    description: course.description || "No description available.",
+                    instructorId: course.instructorId || ["Unknown"],
+                    meetingLink: course.meetingLink || "https://example.com",
+                    imgLink: course.imgLink || "https://example.com/default-image.png",
+                    date: course.date ? new Date(course.date) : new Date(),
+                    tags: course.tags || ["Uncategorized"]
+                }));
+                setcourses(fullCourses);
+            }
+        });
     }, []);
     
     return (
