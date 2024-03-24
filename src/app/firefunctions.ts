@@ -60,9 +60,18 @@ export const getUser = async ( user: User  ) => {
 }
 
 export const addUser = async ( user: User) => {
+    console.log("adding user")
     try {
-        await setDoc(doc(db, "courses", user), user);
-    } catch {
-        console.log("Failed to add course")
+        const userDoc = await getDoc(doc(db, "users", user.id));
+
+        if (userDoc.exists()) { return; }
+        console.log("n")
+        const userRef = doc(db, "users", user.id);
+        await setDoc(userRef, user);
+        console.log("User added successfully!");
+    } catch (error) {
+        console.error("Error adding user:", error);
     }
-}
+};
+
+//
