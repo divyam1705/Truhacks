@@ -13,7 +13,7 @@ import {
     where,
     getDocs,
 } from "firebase/firestore";
-import { Course } from "./types";
+import { Course ,User} from "./types";
 
 export const getCourses = async ( course: Course  ) => {
     try {
@@ -51,7 +51,7 @@ export const updateCourse = async (course: Course) => {
 
 export const getUser = async ( user: User  ) => {
     try {
-        const courseDoc = await getDoc(doc(db, "users" , user.id));
+        const courseDoc = await getDoc(doc(db, "users" , user.userId));
         return courseDoc;
     } catch {
         console.log("Failed to get user")
@@ -62,11 +62,11 @@ export const getUser = async ( user: User  ) => {
 export const addUser = async ( user: User) => {
     console.log("adding user")
     try {
-        const userDoc = await getDoc(doc(db, "users", user.id));
+        const userDoc = await getDoc(doc(db, "users", user.userId));
 
         if (userDoc.exists()) { return; }
         console.log("n")
-        const userRef = doc(db, "users", user.id);
+        const userRef = doc(db, "users", user.userId);
         await setDoc(userRef, user);
         console.log("User added successfully!");
     } catch (error) {

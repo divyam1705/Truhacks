@@ -3,7 +3,7 @@ import Instructorcard from '@/components/Instructor_card'
 // import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
-
+import Image from 'next/image'
 import { useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 import { Separator } from '@radix-ui/react-separator'
@@ -28,7 +28,7 @@ function Coursepage({ params }: any) {
   };
 function InfiniteMovingCardsDemo() {
   return (
-    <div className="h-[30rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+    <div className="h-[20rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards
         items={testimonials}
         direction="right"
@@ -75,11 +75,13 @@ const testimonials = [
     <>
       {/* <Navbar /> */}
 
-      <div className='p-10'>
-        <div className='flex  justify-between items-center  flex-col md:flex-row lg:flex-row xl:flex-row md:items-start lg:items-start xl:items-start '>
+      <div className=''>
+        <div className='p-10 flex  justify-between items-center  flex-col md:flex-row lg:flex-row xl:flex-row md:items-start lg:items-start xl:items-start '>
           <div className=' w-[35vw] min-w-[400px]  bg-white bg-opacity-5 border-2  rounded-xl p-5 flex flex-col items-center gap-5 '>
-            <img
+            <Image
               className='rounded-lg w-[360px] h-[220px]'
+              width={360}
+              height={220}
               src="https://cdn.mindmajix.com/courses/react-js-training.png" alt="" />
             <div className='flex justify-center items-center '>
 

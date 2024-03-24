@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
@@ -192,9 +192,10 @@ function Loginpage() {
                     </CardContent>
                     <CardFooter className="flex justify-center items-center">
                         <Button variant="outline" onClick={handleGoogleSignIn}>
-                            <img
+                            <Image
                                 className="sign-in mr-3 "
-                                width="25 px"
+                                width={25}
+                                height={25}
                                 alt="Google sign-in"
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3yt2UdGKpuLH_WHF0JOKg8cYJHSVarNH5Q&usqp=CAU"
                             />
