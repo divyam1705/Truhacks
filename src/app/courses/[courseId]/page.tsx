@@ -32,10 +32,25 @@ function Coursepage({ params }: any) {
     rating: 5
   };
   function InfiniteMovingCardsDemo() {
+    const instructor_array=[{
+      instructor_name: "Peter Maher",
+      profilePicture: "https://t4.ftcdn.net/jpg/01/01/04/21/360_F_101042187_ksgPPYdbzU24Jql483ByxCVSwXICLM2w.jpg",
+      designation: "Software Developer",
+      description: "I love to teach!! ",
+      rating: 5
+    },
+    {
+      instructor_name: "Brenda Boyce",
+      profilePicture: "https://amysmusicnook.co.uk/wp-content/uploads/2020/07/Profile-Pic.jpg",
+      designation: "Doctor",
+      description: " Keep pushing forward, for the wealth of knowledge you accumulate today is the foundation of your tomorrow.",
+      rating: 5
+    }
+  ]
     return (
       <div className="h-[20rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
-          items={testimonials}
+          items={instructor_array}
           direction="right"
           speed="slow"
         />
