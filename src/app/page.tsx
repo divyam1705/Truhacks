@@ -9,14 +9,15 @@ export default function Home() {
   const router=useRouter();
   return (
     <>
+    
       {/* <Navbar /> */}
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
 
         <div className="flex flex-col justify-center items-center font-semibold  mt-[-40px] ">
-          <div className="mb-20 text-8xl">TeachMate</div>
+          <div className="mb-20 text-5xl md:text-8xl ">TeachMate</div>
           <TextGenerateEffect
-          // className="m-2"
+          className="font-semibold text-sm md:text-md"
             words="Teaching Made Personal, Learning Made Possible . . ."
           />
           <div className="flex justify-center items-center mt-8 text-lg">

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from "next/image"
 import { AnimatedTooltip } from '@/components/ui/animated-tootip';
@@ -60,13 +60,13 @@ import { Separator } from "@/components/ui/separator"
 const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
 )
-function TimeSelector({ hrs }: { hrs: boolean }) {
+function TimeSelector({ hrs, vari, setvari }: { hrs: boolean, vari: string, setvari: (v: string) => void }) {
     // console.log(hrs);
     const hours = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
     const minutes = ["00", "10", "20", "30", "40", "50"];
 
     return (
-        <Select >
+        <Select onValueChange={(val) => { setvari(val) }} >
             <SelectTrigger className="w-[70px] ">
                 <SelectValue placeholder={hrs === true ? "12" : "00"} />
             </SelectTrigger>
@@ -89,16 +89,16 @@ function TimeSelector({ hrs }: { hrs: boolean }) {
 
     );
 }
-function MeridianSelector() {
+function MeridianSelector({vari,setvari}:{vari:string,setvari:(v:string)=>void}) {
 
     return (
-        <Select >
+        <Select onValueChange={setvari}>
             <SelectTrigger className="w-[70px] ">
                 <SelectValue placeholder="AM" />
             </SelectTrigger>
             <SelectContent>
-                <SelectItem  value="AM">AM</SelectItem>
-                <SelectItem  value="PM">PM</SelectItem>
+                <SelectItem value="AM">AM</SelectItem>
+                <SelectItem value="PM">PM</SelectItem>
             </SelectContent>
         </Select>
 
@@ -122,8 +122,7 @@ function ScrollAreaDemo() {
     )
 }
 
-function DatePicker() {
-    const [date, setDate] = React.useState<Date>()
+function DatePicker({ date, setDate }: { date: Date | undefined, setDate: (d: Date | undefined) => void }) {
 
     return (
         <Popover>
@@ -152,10 +151,59 @@ function DatePicker() {
 }
 
 function DialogDemo() {
+    function createDateTime(date: Date|undefined, hour: string, minute: string, meridian: string): Date {
+        if(date===undefined||(merid!=="AM"&&merid!="PM")){return new Date();}
+        let hours24 = parseInt(hour, 10);
+        const minutes = parseInt(minute, 10);
+
+        if (meridian === "PM" && hours24 < 12) {
+            hours24 += 12;
+        } else if (meridian === "AM" && hours24 === 12) {
+            hours24 = 0;
+        }
+
+        const dateTime = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            hours24,
+            minutes
+        );
+
+        return dateTime;
+    }
+    function handleAddCourse() {
+        const newCourse: Course = {
+            courseId: '11',
+            name: name,
+            description: description,
+            instructorId: [""],   // links to the User who is the instructor
+            meetingLink: imageLink,
+            imgLink: link,
+            date: createDateTime(date,hours,minutes,merid),
+            tags:[tag1,tag2]
+        }
+        //TODO
+    }
+    const [name, setname] = useState("");
+    const [description, setdescription] = useState("");
+    const [link, setlink] = useState("");
+    const [imageLink, setimageLink] = useState("");
+    const [date, setDate] = React.useState<Date>()
+    const [hours, sethours] = useState("");
+    const [minutes, setminutes] = useState("");
+    const [merid, setmerid] = useState("");
+    const [tag1, settag1] = useState("");
+    const [tag2, settag2] = useState("");
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline">Add Course</Button>
+                <Button className="fixed bottom-5 right-5 z-50 w-[55px] h-[55px] rounded-3xl" variant="outline">
+                    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 10.5V6.8C20 5.11984 20 4.27976 19.673 3.63803C19.3854 3.07354 18.9265 2.6146 18.362 2.32698C17.7202 2 16.8802 2 15.2 2H8.8C7.11984 2 6.27976 2 5.63803 2.32698C5.07354 2.6146 4.6146 3.07354 4.32698 3.63803C4 4.27976 4 5.11984 4 6.8V17.2C4 18.8802 4 19.7202 4.32698 20.362C4.6146 20.9265 5.07354 21.3854 5.63803 21.673C6.27976 22 7.11984 22 8.8 22H12M18 21V15M15 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
@@ -169,43 +217,55 @@ function DialogDemo() {
                         <Label htmlFor="name" className="text-left">
                             Name
                         </Label>
-                        <Input id="name" value="" className="col-span-3" />
+                        <Input id="name" value={name} onChange={(cv) => { setname(cv.value) }} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="username" className="text-left">
+                        <Label htmlFor="description" className="text-left">
                             Description
                         </Label>
-                        <Input id="username" value="" className="col-span-3" />
+                        <Input id="description" onChange={(cv) => { setdescription(cv.value) }} value={description} className="col-span-3" />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4 ">
+                    <Label htmlFor="tag1" className="text-left">
+                            Tag
+                        </Label>
+                        <div className=''>
+                        
+                        <Input  id="tag1" placeholder='English' onChange={(cv) => { settag1(cv.value) }} value={description} className="col-span-3" />
+                       </div> 
+                       <div>
+                        <Input id="tag2" placeholder='Physics' onChange={(cv) => { settag1(cv.value) }} value={description} className="col-span-3" />
+                        </div>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="meet-link" className="text-left">
                             Link
                         </Label>
-                        <Input id="meet-link" value="" className="col-span-3" />
+                        <Input id="meet-link" onChange={(cv) => { setlink(cv.value) }} value={link} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="image-link" className="text-left">
                             Image Link
                         </Label>
-                        <Input id="image-link" value="" className="col-span-3" />
+                        <Input id="image-link" onChange={(cv) => { setimageLink(cv.value) }} value={imageLink} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="image-link" className="text-left">
                             Date
                         </Label>
-                        <DatePicker />
+                        <DatePicker date={date} setDate={setDate} />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="image-link" className="text-left">
                             Time
                         </Label>
-                        <TimeSelector hrs={true} />
-                        <TimeSelector hrs={false} />
-                       <MeridianSelector/>
+                        <TimeSelector hrs={true} vari={hours} setvari={sethours} />
+                        <TimeSelector hrs={false} vari={minutes} setvari={setminutes} />
+                        <MeridianSelector vari={merid} setvari={merid}/>
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit">Add </Button>
+                    <Button type="submit" onClick={handleAddCourse}>Add </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -275,6 +335,7 @@ function Coursepage() {
     return (
         <>
             {/* <Navbar /> */}
+
             <div className='ml-10 my-7 text-4xl font-semibold'>Courses</div>
             <DialogDemo />
             <div className='flex justify-center items-center'>
