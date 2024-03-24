@@ -2,11 +2,12 @@ export interface Course {
     courseId: string;
     name: string;
     description: string;
-    instructorId: string;    // links to the User who is the instructor
+    instructorId: string[];    // links to the User who is the instructor
     meetingLink: string;
     imgLink: string;
     QAs?: QA[];
-    date:Date
+    date:Date,
+    tags:string[]
   }
 
   export type UserRole = 'student' | 'instructor'; 
