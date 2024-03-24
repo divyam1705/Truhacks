@@ -1,6 +1,6 @@
 # Truhacks2024 - Truman State University Hackathon
 
-![Codacy Badge](https://app.codacy.com/project/badge/Grade/2d72abc3fea24e89a677707d9145b4a6)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2d72abc3fea24e89a677707d9145b4a6)](https://app.codacy.com/gh/divyam1705/Truhacks/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ### **Theme:** United Nations Department of Economic and Social Affairs Sustainable Development
@@ -39,7 +39,7 @@ cd Truhacks
 ```bash
 npm install
 # or
-yarn
+yarn install
 # or
 pnpm install
 # or
