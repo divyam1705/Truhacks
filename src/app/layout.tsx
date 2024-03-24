@@ -3,10 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 
+// Initializes Inter font with selected subsets for global usage
 const inter = Inter({ subsets: ["latin"] });
 import { Toaster } from "@/components/ui/toaster"
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,7 +27,7 @@ export default function RootLayout({
         <Navbar/>
         {children}
         <Toaster />
-        </body>
+      </body>
     </html>
   );
 }
