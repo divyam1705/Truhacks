@@ -1,9 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Truhacks2024 - Truman State University Hackathon
+
+![Codacy Badge](https://app.codacy.com/project/badge/Grade/2d72abc3fea24e89a677707d9145b4a6)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+### **Theme:** United Nations Department of Economic and Social Affairs Sustainable Development
+- *Focusing on Quality Education*
+
+## Project Overview
+
+TeachMate is a dynamic platform web application designed to democratize education by providing free, quality educational resources. Targeting underprivileged communities, TeachMate facilitates live lessons, courses, and more, offered by volunteers from around the world. Our mission aligns with the Sustainable Development Goals, specifically focusing on targets 4.3 and 4.4 to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all.
+
+![SDG Goal 4 Infographic](https://sdgs.un.org/sites/default/files/2023-08/SDG_report_2023_infographics_Goal%204.jpg)
+
+### Live Application
+
+[TeachMate Live App](https://teachmate.vercel.app/)
+
+## Technology Stack
+
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
+- **Backend/Database:** Firebase
 
 ## Getting Started
 
-First, run the development server:
+To run TeachMate locally, follow these steps:
 
+1. Clone the repository:
+```bash
+git clone https://github.com/divyam1705/Truhacks.git
+```
+
+2. Navigate into the project directory:
+```bash
+cd Truhacks
+```
+
+3. Install dependencies:
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
+# or
+bun install
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +57,4 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.

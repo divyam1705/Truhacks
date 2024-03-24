@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from "next/image"
 import { AnimatedTooltip } from '@/components/ui/animated-tootip';
 import { Calendar } from '@/components/ui/calendar';
+
 import {
     Card,
     CardContent,
@@ -266,6 +267,7 @@ function CourseCard({ title, course_img, course_instructors, description, course
 
                 </CardFooter>
             </Card>
+
         </Link>);
 
 }
