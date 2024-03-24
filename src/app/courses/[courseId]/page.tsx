@@ -1,6 +1,6 @@
 "use client"
 import Instructorcard from '@/components/Instructor_card';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/navigation';
 // import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
@@ -10,6 +10,8 @@ import { ToastAction } from "@/components/ui/toast"
 import { Separator } from '@radix-ui/react-separator'
 import React, { useEffect, useState } from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-scroll-cards";
+import { Course } from '@/app/types';
+import { getCourse } from '@/app/firefunctions';
 
 function Tag({ color, tag_name }: { color: string, tag_name: string }) {
   return (
@@ -19,9 +21,10 @@ function Tag({ color, tag_name }: { color: string, tag_name: string }) {
     </div>
   )
 }
+
 function Coursepage({ params }: any) {
-  const router = useRouter();
-  const { course } = router.query;
+  // const router = useRouter();
+  // const { course } = router.query;
   const myinstructor = {
     instructor_name: "Bulbul",
     profilePicture: "https://cdn.vox-cdn.com/thumbor/RcAdlMhw-adDQnJiVWKRPUSP10M=/0x0:2024x1038/1200x800/filters:focal(989x320:1311x642)/cdn.vox-cdn.com/uploads/chorus_image/image/71278865/Screen_Shot_2022_08_23_at_4.22.21_PM.0.png",
@@ -72,8 +75,28 @@ const testimonials = [
     title: "Moby-Dick",
   },
 ];
+const [course, setcourse] = useState<Course>({
+  courseId: "00000",
+    name: "Business",
+    description: "Earn money become millionare!! but first you have to be a billionaire",
+    instructorId: ["0000"],    // links to the User who is the instructor
+    meetingLink: "",
+    imgLink: "https://www.devonblog.com/wp-content/uploads/2022/06/tailwind-thumb.jpg",
+    date: new Date(),
+    tags: ["Money","$ dollars"]
+});
+useEffect(() => {
+  getCourse(params.courseId).then((cour)=>{
+    // console.log(cour);
+    setcourse(cour as Course);
+  })
+}, []);
 
   const { toast } = useToast();
+  if(!course){
+    <div>...Loading</div>
+  }
+  // console.log(course,course.date);
   return (
     <>
       {/* <Navbar /> */}
@@ -85,13 +108,13 @@ const testimonials = [
               className='rounded-lg w-[360px] h-[220px]'
               width={360}
               height={220}
-              src="https://cdn.mindmajix.com/courses/react-js-training.png" alt="" />
+              src={course.imgLink} alt="" />
             <div className='flex justify-center items-center '>
 
-              <Tag color="red" tag_name="Tailwind" />
-              <Tag color="blue" tag_name="Next.js" />
+              <Tag color="red" tag_name={course.tags[0]} />
+              <Tag color="blue" tag_name={course.tags[1]} />
             </div>
-            <DatePicker />
+            <DatePicker dat={course.date} />
             <Button variant="outline"
               onClick={() => {
                 toast({
@@ -106,9 +129,9 @@ const testimonials = [
 
           </div>
           <div className='w-[55vw] p-5 flex flex-col  items-center justify-start'>
-            <div className='my-4 text-center text-5xl font-semibold'>React</div>
+            <div className='my-4 text-center text-5xl font-semibold'>{course.name}</div>
             <div className='mt-3 w-[40vw] font-extralight text-md'>
-              React is react and you dont know react so you should just learn react then you get a job in react then get a good reaction
+{course.description}
             </div>
           </div>
         </div>

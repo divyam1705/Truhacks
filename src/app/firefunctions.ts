@@ -28,11 +28,21 @@ export const getCourses = async () => {
 };
 
 // Retrieves a specific course by ID.
-export const getCourse = async (course: Course) => {
+export const getCourse = async (courseId:string) => {
+    
     try {
-        return await getDoc(doc(db, "courses", course.courseId));
-    } catch {
-        console.log("Failed to get courses");
+        const docRef = doc(db, "courses", courseId);
+        const courseSnapshot = await getDoc(docRef);
+        
+        if (courseSnapshot.exists()) {
+            return courseSnapshot.data();
+        } else {
+            console.log("Course does not exist");
+            return null;
+        }
+    } catch (error) {
+        console.error("Failed to get course:", error);
+        throw error; // Rethrow the error to handle it at the caller level
     }
 };
 
