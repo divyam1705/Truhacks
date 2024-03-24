@@ -5,6 +5,7 @@ export interface Course {
     instructorId: string;    // links to the User who is the instructor
     meetingLink: string;
     imgLink: string;
+    QAs: QA[];
   }
 
   export type UserRole = 'student' | 'instructor'; 
@@ -16,4 +17,9 @@ export interface Course {
     sMedia: string[];       // social media links
     role: UserRole;
     courses?: string[];     // optional - instructor's teaching courses and student's enrolled courses
+  }
+
+  export interface QA {
+    question: string;
+    answer: string;
   }
