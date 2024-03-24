@@ -5,7 +5,8 @@ export interface Course {
     instructorId: string;    // links to the User who is the instructor
     meetingLink: string;
     imgLink: string;
-    QAs: QA[];
+    QAs?: QA[];
+    date:Date
   }
 
   export type UserRole = 'student' | 'instructor'; 
