@@ -1,4 +1,5 @@
 export interface Course {
+
     courseId: string;
     name: string;
     description: string;
@@ -11,7 +12,9 @@ export interface Course {
     tags: string[];
   }
 
-  export type UserRole = 'student' | 'instructor'; 
+
+export type UserRole = 'student' | 'instructor'; 
+
 
   export interface User {
     userId: string;
@@ -32,3 +35,4 @@ export interface Course {
     description:string;
     image:string;
   }
+
