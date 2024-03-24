@@ -43,19 +43,35 @@ export const addCourse = async (course: Course) => {
 
 export const updateCourse = async (course: Course) => {
     try {
-        await updateDoc(doc(db, "courses", course.name), d);
+        await setDoc(doc(db, "courses", course.courseId), course);
     } catch {
         console.log("Failed to update course")
     }
 }
 
-export const getUser = async ( course: Course  ) => {
+export const getUser = async ( user: User  ) => {
     try {
-        const courseDoc = await getDoc(doc(db, "users" , course.courseId));
+        const courseDoc = await getDoc(doc(db, "users" , user.id));
         return courseDoc;
     } catch {
-        console.log("Failed to get courses")
+        console.log("Failed to get user")
     }
 
-
 }
+
+export const addUser = async ( user: User) => {
+    console.log("adding user")
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.id));
+
+        if (userDoc.exists()) { return; }
+        console.log("n")
+        const userRef = doc(db, "users", user.id);
+        await setDoc(userRef, user);
+        console.log("User added successfully!");
+    } catch (error) {
+        console.error("Error adding user:", error);
+    }
+};
+
+//
