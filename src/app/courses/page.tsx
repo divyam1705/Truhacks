@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Link from 'next/link';
-
+import Image from "next/image"
 import {
     Card,
     CardContent,
@@ -54,7 +54,7 @@ function CourseCard({title, course_img, course_instructors,description,course_id
                 <CardDescription className='overflow-hidden whitespace-nowrap'>React is react and you dont know react. so freaking learn it</CardDescription>
             </CardHeader>
             <CardContent>
-                <img className='rounded-lg w-[330px] h-[150px]' src={course_img} alt="" />
+                <Image className='rounded-lg w-[330px] h-[150px]' width={330} height={150} src={course_img} alt="" />
             </CardContent>
             <CardFooter  className='flex flex-col justify-center items-center -mt-3'>
             <div className='flex justify-center items-center mb-2'>

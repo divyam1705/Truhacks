@@ -13,7 +13,9 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import firebase from "firebase/compat/app";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import Image from 'next/image'
+
 import { z } from "zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -265,9 +267,10 @@ function Signpage() {
                         </CardContent>
                         <CardFooter className="flex justify-center items-center">
                             <Button variant="outline" onClick={handleGoogleSignIn}>
-                                <img
+                                <Image
                                     className="sign-in mr-3 "
-                                    width="25 px"
+                                    width={25}
+                                    height={25}
                                     alt="Google sign-in"
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3yt2UdGKpuLH_WHF0JOKg8cYJHSVarNH5Q&usqp=CAU"
                                 />
@@ -336,9 +339,10 @@ function Signpage() {
                         </CardContent>
                         <CardFooter className="flex justify-center items-center">
                             <Button variant="outline" onClick={handleGoogleSignIn}>
-                                <img
+                                <Image
                                     className="sign-in mr-3 "
-                                    width="25 px"
+                                    width={25}
+                                    height={25}
                                     alt="Google sign-in"
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3yt2UdGKpuLH_WHF0JOKg8cYJHSVarNH5Q&usqp=CAU"
                                 />
