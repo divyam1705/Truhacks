@@ -54,24 +54,7 @@ function Loginpage() {
         email: "",
         password: "",
     });
-    const addUser = async (name: string, email: string, id: string) => {
-        console.log("adding user")
-        try {
-            const userDoc = await getDoc(doc(db, "users", id));
-
-            if (userDoc.exists()) { return; }
-            console.log("n")
-            const userRef = doc(db, "users", id);
-            await setDoc(userRef, {
-                name: name,
-                email: email,
-                id: id
-            });
-            console.log("User added successfully!");
-        } catch (error) {
-            console.error("Error adding user:", error);
-        }
-    };
+    
     const [submitload, setsubmitload] = useState(false);
 
     const handleGoogleSignIn = async () => {

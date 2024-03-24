@@ -12,10 +12,10 @@ interface Instructor {
 function Instructorcard({instructor}:InstructorCardProps) {
     
   return (
-    <div className="max-w-[350px] bg-white bg-opacity-5 rounded-lg border-2 p-4 m-2">
+    <div className="max-w-[350px] bg-white bg-opacity-5 rounded-lg border-2 p-4 m-2 ">
       <div className="text-2xl text-center font-semibold">{instructor.instructor_name}</div>
       <div className="flex flex-col items-center justify-center mt-2 ">
-        <img src={instructor.profilePicture} alt={instructor.instructor_name} className="w-20 h-20 rounded-full shadow-xl" />
+        <img src={instructor.profilePicture} alt={instructor.instructor_name} className="w-16 h-16 rounded-full shadow-xl" />
         <div className="text-gray-400 font-semibold mt-2">{instructor.designation}</div>
       <div className="text-gray-400 font-extralight mt-2 text-sm">{instructor.description}</div>
       
