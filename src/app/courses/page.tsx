@@ -308,10 +308,12 @@ function CourseCard(course:Course) {
 
     ];
     const pth="/courses/" + course.courseId;
+
     
     return (
         <Link 
         href={{ pathname: pth}}>
+
             <Card className='w-[320px] h-[330px] m-2 text-lg cursor-pointer transition-transform duration-300 transform hover:-translate-y-3'>
                 <CardHeader>
                     <CardTitle>{course.name}</CardTitle>
