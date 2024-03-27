@@ -8,7 +8,8 @@
 
 ## Project Overview
 
-TeachMate is a dynamic platform web application designed to democratize education by providing free, quality educational resources. Targeting underprivileged communities, TeachMate facilitates live lessons, courses, and more, offered by volunteers from around the world. Our mission aligns with the Sustainable Development Goals, specifically focusing on targets 4.3 and 4.4 to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all.
+TeachMate is designed to make education accessible and free for everyone, focusing on live classes taught by volunteer instructors. It aims to bridge the educational gap in underserved communities by offering a variety of courses and learning materials. Aligned with the United Nations Sustainable Development Goal 4, TeachMate emphasizes targets 4.3 and 4.4, which advocate for inclusive, equitable quality education and lifelong learning opportunities.
+
 
 ![SDG Goal 4 Infographic](https://sdgs.un.org/sites/default/files/2023-08/SDG_report_2023_infographics_Goal%204.jpg)
 
