@@ -8,16 +8,16 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const router= useRouter();
+  const router = useRouter();
   const [loggedIn, setloggedIn] = useState(false);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if(localStorage.getItem("userEmail"))setloggedIn(true)
-     
-    } 
-    
+      if (localStorage.getItem("userEmail")) setloggedIn(true)
+
+    }
+
   }, []);
-  
+
   return (
     <nav className="bg-black-100 border-2">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -65,55 +65,60 @@ const Navbar = () => {
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0 flex items-center">
               {/* Your logo or brand name */}
-              <span className="text-white font-bold text-xl">TeachMate</span>
+              <span className="text-white font-bold text-2xl  ">TeachMate</span>
             </div>
             <div className="hidden sm:block sm:ml-6">
               {/* Your nav links */}
               <div className="flex space-x-4">
                 <Link
                   href="/"
-                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 >
                   Home
                 </Link>
-                <Link
-                  href="/courses"
-                  // onClick={()=>{ router.push("/courses")}}
 
-                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Courses
-                </Link>
-                {!loggedIn&& <><Link
+                {!loggedIn && <><Link
                   href="/sign"
-                // onClick={()=>{ router.push("/sign")}}
-                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  // onClick={()=>{ router.push("/sign")}}
+                  className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Signup 
+                  Signup
                 </Link>
-                <Link
-                  href="/login"
-                  // onClick={()=>{ router.push("/login")}}
-                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Login
-                </Link></>
+                  <Link
+                    href="/login"
+                    // onClick={()=>{ router.push("/login")}}
+                    className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Login
+                  </Link></>
                 }
                 {
-                  loggedIn&&
-                  <Link
-                  href="/login"
-                  onClick={()=>{
-                    localStorage.removeItem("authToken");
-                  localStorage.removeItem("userEmail");
-                  router.push("/login");
-                setloggedIn(false);}}
-                  className="text-gray-300 hover:bg-gray-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Logout
-                </Link>
-                  }
-                
+                  loggedIn &&
+                  <>
+                    <Link
+                      href="/courses"
+                      // onClick={()=>{ router.push("/courses")}}
+
+                      className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Courses
+                    </Link>
+                    <Link
+                      href="/login"
+                      onClick={() => {
+                        localStorage.removeItem("authToken");
+                        localStorage.removeItem("userEmail");
+                        router.push("/login");
+                        setloggedIn(false);
+                      }}
+                      className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Logout
+                    </Link>
+                  </>
+
+                }
+
               </div>
             </div>
           </div>
@@ -123,12 +128,52 @@ const Navbar = () => {
       <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link
-            href="#"
-            className="text-gray-300 hover:bg-gray-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            href="/"
+            className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Home
           </Link>
-          
+          {!loggedIn && <Link
+            href="/sign"
+            // onClick={()=>{ router.push("/sign")}}
+            className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Signup
+          </Link>
+            
+          }
+          {!loggedIn&&<Link
+              href="/login"
+              // onClick={()=>{ router.push("/login")}}
+              className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Login
+            </Link>}
+          {
+            loggedIn &&
+            
+              <Link
+                href="/courses"
+                // onClick={()=>{ router.push("/courses")}}
+
+                className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Courses
+              </Link>}
+              {
+            loggedIn &&
+              <Link
+                href="/login"
+                onClick={() => {
+                  localStorage.removeItem("authToken");
+                  localStorage.removeItem("userEmail");
+                  router.push("/login");
+                  setloggedIn(false);
+                }}
+                className="text-gray-300 hover:bg-white hover:bg-opacity-5 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Logout
+              </Link> }
         </div>
       </div>
     </nav>

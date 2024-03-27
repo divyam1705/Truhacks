@@ -104,8 +104,9 @@ function Signpage() {
                 console.log("User added ");
                
                 // router.push("/"); 
-                // window.location.reload();
+                
                 window.location.href = '/';
+                // window.location.reload();
                 
             })
             .catch((error) => {

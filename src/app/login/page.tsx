@@ -105,7 +105,10 @@ function Loginpage() {
     const handleCallback = async () => {
        
         
-        router.push("/");
+        // router.push("/");
+        window.location.href = '/';
+        // window.location.reload();
+
 
     };
 

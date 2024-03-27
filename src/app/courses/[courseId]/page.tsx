@@ -52,7 +52,7 @@ function Coursepage({ params }: any) {
         <InfiniteMovingCards
           items={instructor_array}
           direction="right"
-          speed="slow"
+          speed="fast"
         />
       </div>
     );
