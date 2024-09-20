@@ -8,7 +8,7 @@ TeachMate is designed to make education accessible and free for everyone, focusi
 Aligned with the United Nations Sustainable Development Goal 4, TeachMate emphasizes targets 4.3 and 4.4, advocating for inclusive, equitable quality education and lifelong learning opportunities.
 
 ## Live Application 🚀
-[TeachMate Live App](#)
+[TeachMate Live App](https://teachmate.vercel.app/)
 
 ## Technology Stack
 - **Frontend Framework**: Next.js
