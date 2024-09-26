@@ -3,6 +3,12 @@
 
 # <p align="center"> TeachMate </p>
 
+<div>
+   <p align="center">
+      <img src="/public/img/teachmate-demo.gif" width="80%" >
+   </p>
+</div>
+
 TeachMate is designed to make education accessible and free for everyone, focusing on live classes taught by volunteer instructors. It aims to bridge the educational gap in underserved communities by offering a variety of courses and learning materials.
 
 Aligned with the United Nations Sustainable Development Goal 4, TeachMate emphasizes targets 4.3 and 4.4, advocating for inclusive, equitable quality education and lifelong learning opportunities.
