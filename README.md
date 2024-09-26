@@ -5,7 +5,7 @@
 
 <div>
    <p align="center">
-      <img src="/public/img/teachmate-demo.gif" width="80%" >
+      <img src="/public/img/teachmate-demo.gif" width="90%" >
    </p>
 </div>
 
