@@ -40,7 +40,3 @@ To run TeachMate locally, follow these steps:
 
 ## Project Background
 This project was developed for a hackathon themed around the United Nations Sustainable Development Goals. It provides a platform for live classes taught by volunteer instructors to promote inclusive and equitable education for underserved communities. While this is a prototype, it demonstrates the potential of technology to support lifelong learning and skill development for all.
-
-<p align="center">
-   <img src="https://sdgs.un.org/sites/default/files/2023-08/SDG_report_2023_infographics_Goal%204.jpg" alt="SDG Goal 4 Infographic" width="80%">
-</p>
