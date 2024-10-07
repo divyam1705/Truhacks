@@ -26,22 +26,20 @@ Aligned with the United Nations Sustainable Development Goal 4, TeachMate emphas
 To run TeachMate locally, follow these steps:
 
 1. **Clone the repository:**
-   ```bash
+   ```sh
    git clone https://github.com/divyam1705/Truhacks.git
-   
-2. **Navigate into the project directory:**
-   ```bash
    cd Truhacks
-
-3. **Install dependencies:**
-   ```bash
+   ```
+2. **Install dependencies:**
+   ```sh
    npm install # or yarn, pnpm, bun
+   ```
    
-4. **Start the development server:**
-   ```bash
-   npm run dev # or yarn, pnpm, bun
-
-5. **Open the app in your browser: http://localhost:3000**
+3. **Start the development server:**
+   ```sh
+   npm run dev  # or yarn dev, pnpm dev, bun dev
+   ```
+   Open in browser: http://localhost:3000
 
 ## Project Background
 This project was developed for a hackathon themed around the United Nations Sustainable Development Goals. It provides a platform for live classes taught by volunteer instructors to promote inclusive and equitable education for underserved communities. While this is a prototype, it demonstrates the potential of technology to support lifelong learning and skill development for all.
